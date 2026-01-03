@@ -5,6 +5,7 @@ import com.ejemplo.libreria.Servicio.ServicioLibro;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,5 +35,19 @@ public class ControladorLibreria {
         return libroRepositorio.BuscaId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/clone")
+    public String probarClone(){
+        Libro original = new Libro(
+                1L,
+                "Gabriel García Márquez",
+                "Cien años de soledad",
+                LocalDate.of(1967, 5, 30));
+        Libro copia = original.clone();
+
+
+        return "Original: " + original.toString() + " | Copia: " + copia.toString();
+
     }
 }
