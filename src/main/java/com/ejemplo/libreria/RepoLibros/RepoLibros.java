@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class RepoLibros {
+public class RepoLibros implements IRepoLibro {
 
     private final List<Libro> libros = new ArrayList<>();
 
